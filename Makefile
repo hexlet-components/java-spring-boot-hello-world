@@ -31,4 +31,13 @@ update-deps:
 
 build-run: build run
 
+docker-build:
+	docker build -t java-spring-boot-hello-world .
+
+docker-run:
+	docker run -p 3000:8080 --name spring-hello-world java-spring-boot-hello-world
+
+docker-bash:
+	docker run --rm -it -p 3000:8080 java-spring-boot-hello-world bash
+
 .PHONY: build
