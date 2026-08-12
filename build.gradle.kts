@@ -3,9 +3,11 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
   jacoco
-  checkstyle
-  id("org.springframework.boot") version "3.5.14"
-  id("io.spring.dependency-management") version "1.1.7"
+  alias(libs.plugins.spotless)
+  alias(libs.plugins.versions)
+  alias(libs.plugins.version.catalog.update)
+  alias(libs.plugins.spring.boot)
+  alias(libs.plugins.spring.dependency.management)
   id("application")
 }
 
@@ -13,13 +15,14 @@ repositories {
   mavenCentral()
 }
 
-tasks.compileJava {
-  options.release.set(24)
+java {
+  toolchain { languageVersion = JavaLanguageVersion.of(25) }
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-web")
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  implementation(libs.springBootStarterWebmvc)
+  testImplementation(libs.springBootStarterTest)
+  testImplementation(libs.springBootStarterWebmvcTest)
 }
 
 tasks.test {
@@ -35,4 +38,22 @@ tasks.jacocoTestReport { reports { xml.required.set(true) } }
 
 application {
   mainClass.set("io.hexlet.App")
+}
+
+spotless {
+  java {
+    importOrder()
+    removeUnusedImports()
+    googleJavaFormat().aosp()
+    formatAnnotations()
+    leadingTabsToSpaces(4)
+    endWithNewline()
+  }
+}
+
+// versionCatalogUpdate пишет свежие версии прямо в gradle/libs.versions.toml,
+// поэтому руками их сверять не нужно. Ключи не сортируются: порядок в каталоге
+// смысловой, по группам зависимостей.
+versionCatalogUpdate {
+  sortByKey = false
 }
