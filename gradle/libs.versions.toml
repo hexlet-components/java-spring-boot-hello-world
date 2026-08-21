@@ -6,10 +6,10 @@ spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 
 [versions]
-spotless-plugin = "8.9.0"
+spotless-plugin = "8.10.0"
 versions-plugin = "0.61.0"
 catalog-update-plugin = "1.1.1"
-spring-boot = "4.1.0"
+spring-boot = "4.1.1"
 spring-dependency-management = "1.1.7"
 
 [libraries]
