@@ -2,7 +2,7 @@ This project is a simple "Hello World" application built with Java and Spring Bo
 
 ## Prerequisites
 
-- Java 24 or higher
+- Java 27 or higher
 - Gradle 8.4 or higher
 
 ## Getting Started

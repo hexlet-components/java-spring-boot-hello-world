@@ -16,7 +16,7 @@ repositories {
 }
 
 java {
-  toolchain { languageVersion = JavaLanguageVersion.of(25) }
+  toolchain { languageVersion = JavaLanguageVersion.of(27) }
 }
 
 dependencies {
@@ -33,6 +33,11 @@ tasks.test {
         showStandardStreams = true
     }
 }
+
+
+// Версия JaCoCo задана явно: встроенная в Gradle отстаёт от JDK, и на новой
+// Java агент падает с IllegalClassFormatException.
+jacoco { toolVersion = libs.versions.jacoco.get() }
 
 tasks.jacocoTestReport { reports { xml.required.set(true) } }
 
