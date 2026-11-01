@@ -10,7 +10,7 @@ jacoco = "0.8.15"
 spotless-plugin = "8.10.4"
 versions-plugin = "0.66.0"
 catalog-update-plugin = "1.1.1"
-spring-boot = "4.1.1"
+spring-boot = "4.1.2"
 spring-dependency-management = "1.1.7"
 
 [libraries]
